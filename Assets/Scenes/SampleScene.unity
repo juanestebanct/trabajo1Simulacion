@@ -247,6 +247,7 @@ MonoBehaviour:
   mySecondVectorV2:
     x: -5
     y: 5
+  relativeDistance: 0.05
 --- !u!4 &1522267127
 Transform:
   m_ObjectHideFlags: 0

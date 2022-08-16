@@ -58,16 +58,18 @@ public struct MyVector
             0
         );
     }
-    public static explicit  operator Vector3(MyVector a)
+    public static implicit operator Vector3(MyVector a)
     {
         return new Vector3(a.x,a.y,0);
     }
-    public MyVector Lerp(MyVector a,MyVector b, float c)
+    public static implicit operator MyVector(Vector3 a)
     {
-        return new MyVector(
-            (a.x+(a.x-b.x)*c),
-            (a.x+(a.y -b.y)*c)
-            );
+        return new MyVector(a.x,a.y);
+    }
+    public MyVector Lerp(MyVector b ,float c)
+    {
+        return (this + (this - b) * c);
+            
     }
     public void Draw(MyVector origin,Color color)
     {

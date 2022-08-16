@@ -46,9 +46,15 @@ public class TestVector : MonoBehaviour
         mySecondVectorV1.Draw(Color.blue);
         mySecondVectorV2.Draw(Color.red);
 
-        MyVector diff = (mySecondVectorV2 - mySecondVectorV1)* relativeDistance;
-        diff.Draw(mySecondVectorV1,Color.yellow);
-        MyVector lerp = (mySecondVectorV1 + diff);
-        lerp.Draw(Color.green);
+        MyVector diff = (mySecondVectorV2 - mySecondVectorV1) * relativeDistance;
+        diff.Draw(mySecondVectorV1, Color.yellow);
+
+
+        MyVector Lerp = (mySecondVectorV1 + diff);
+        //var a = mySecondVectorV1.Lerp(diff, relativeDistance);
+        Lerp.Draw(Color.green);
+        //a.Draw(Color.green);
+
+
     }
 }
