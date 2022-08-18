@@ -20,9 +20,10 @@ public class TestVelocity : MonoBehaviour
     void Update()
     {
         Displacement.Draw(position,Color.red);
-        position.Draw(position,Color.blue);
+        position.Draw(Color.blue);
         Move();
         velocity.Draw(position,Color.red);
+        aceleracion.Draw(position,Color.yellow);
 
     }
     public void Move()
