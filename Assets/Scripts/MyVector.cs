@@ -49,6 +49,14 @@ public struct MyVector
     {
         return a.Scale(b);
     }
+    public static MyVector operator /(float b, MyVector a)
+    {
+        return a.Scale(1f/b);
+    }
+     public static MyVector operator /(MyVector a,float b)
+    {
+        return a.Scale(1f/b);
+    }
     public void Draw(Color color)
     {
         Debug.DrawLine(
@@ -57,6 +65,41 @@ public struct MyVector
             color,
             0
         );
+    }
+    public MyVector normalize => this / magnitude;
+    public float magnitude=> Mathf.Sqrt(x*x+y*y);
+   
+    public MyVector normalized
+    {
+        get
+        {
+            float distance = magnitude;
+            if (distance< float.Epsilon)
+            {
+                return new MyVector(0, 0);
+                
+            }
+          
+            return new MyVector(x / magnitude, y / magnitude);
+
+          
+
+        }
+    }
+
+    public void Normalize()
+    {
+        float magnitudeCache=magnitude ;
+        if (magnitude< float.Epsilon)
+        {
+            x = 0;
+            y = 0;
+        }
+        else
+        {
+            x /= magnitudeCache;
+            y /= magnitudeCache;
+        }
     }
     public static implicit operator Vector3(MyVector a)
     {
