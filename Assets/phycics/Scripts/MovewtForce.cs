@@ -11,6 +11,7 @@ public class MovewtForce : MonoBehaviour
     [SerializeField] private float mass = 1;
     [SerializeField] private MyVector velocity;
     [SerializeField] private MyVector aceleracion;
+    [Range(0, 1)] [SerializeField] float dampingFactor = 1;
     private MyVector Displacement;
    
     // Start is called before the first frame update
@@ -46,11 +47,13 @@ public class MovewtForce : MonoBehaviour
          {
              position.x = Mathf.Sign(position.x) * 5;
              velocity.x *= -1;
+             velocity.x *= dampingFactor;
          }
          if (position.y < -5 || position.y > 5)
          {
              position.y = Mathf.Sign(position.y) * 5;
              velocity.y *= -1;
+             velocity.y *= dampingFactor;
          }
         
         transform.position = position;

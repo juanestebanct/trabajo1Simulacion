@@ -624,13 +624,14 @@ MonoBehaviour:
   wind:
     x: 0
     y: 0
-  mass: 3
+  mass: 1
   velocity:
     x: 0
     y: 0
   aceleracion:
     x: 0
     y: 0
+  dampingFactor: 1
 --- !u!212 &1820416461
 SpriteRenderer:
   m_ObjectHideFlags: 0

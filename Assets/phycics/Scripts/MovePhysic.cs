@@ -9,14 +9,14 @@ public class MovePhysic : MonoBehaviour
     [SerializeField] private float mass =0.1f;
     [SerializeField] private MyVector velocity;  
     [SerializeField] private MyVector wind    ;
-    [Range(0, 1)] [SerializeField] float dampingFactor =1;
-    public float frictioncoefficienci=0.5f;
     private MyVector position;
     private MyVector aceleracion;
     private MyVector Displacement;
     public MyVector friction;
+    [Range(0, 1)] [SerializeField] float dampingFactor =1;
+    
     public float N;
-
+    public float frictioncoefficienci=0.5f;
     // Start is called before the first frame update
     void Start()
     {
