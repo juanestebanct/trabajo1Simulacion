@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class NewtonAtraccion : MonoBehaviour
 {
-    [SerializeField] private MyVector aceleracion;
+    
     [SerializeField] private MyVector velocity;
+    private MyVector aceleracion;
     MyVector position;
     public NewtonAtraccion target;
     public float mass=1f;
@@ -16,15 +17,19 @@ public class NewtonAtraccion : MonoBehaviour
     }
     private void FixedUpdate()
     {
-      
+        aceleracion *= 0f;
+
         MyVector r = target.transform.position - transform.position;
         float rMagnitud = r.magnitude;
         float Mass = target.mass * mass;
-        MyVector f = r.normalize *((Mass /rMagnitud*rMagnitud));
+        float Scalarpart = (Mass)/(rMagnitud * rMagnitud);
+        MyVector f = r.normalize * Scalarpart;
         ApplyForce(f);
+      
         f.Draw(transform.position,Color.blue);
+        Move();
         //limite de velocidad 
-       
+
     }
     public void Move()
     {
@@ -32,20 +37,21 @@ public class NewtonAtraccion : MonoBehaviour
 
         velocity = velocity + aceleracion * Time.fixedDeltaTime;
         position = position + velocity * Time.fixedDeltaTime;
-        if (velocity.magnitude > 10)
+        transform.position = position;
+        if (velocity.magnitude > 5)
         {
             velocity.Normalize();
-            velocity *= 10;
+            velocity *= 5;
         }
 
 
-        transform.position = position;
+        
 
 
     }
     void ApplyForce(MyVector force)
     {
         aceleracion += force * (1f / mass);
-        Move();
+       
     }
 }
