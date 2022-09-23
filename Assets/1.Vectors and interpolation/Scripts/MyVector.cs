@@ -6,6 +6,8 @@ public struct MyVector
     public float x;
     public float y;
 
+    public float radius { get => x; set => x = value; }
+    public float angle { get => y; set => y = value; }
     public MyVector(float x, float y)
     {
         this.x = x;
@@ -86,7 +88,10 @@ public struct MyVector
 
         }
     }
-
+    public MyVector FromPolarToCartes()
+    {
+        return new MyVector(radius*Mathf.Cos(angle), radius * Mathf.Sin(angle));
+    }
     public void Normalize()
     {
         float magnitudeCache=magnitude ;

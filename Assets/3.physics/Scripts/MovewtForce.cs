@@ -9,7 +9,7 @@ public class MovewtForce : MonoBehaviour
     [SerializeField] private MyVector force;
     [SerializeField] private MyVector wind;
     [SerializeField] private float mass = 1;
-    [SerializeField] private MyVector velocity;
+   public MyVector velocity;
     [SerializeField] private MyVector aceleracion;
     [Range(0, 1)] [SerializeField] float dampingFactor = 1;
     private MyVector Displacement;

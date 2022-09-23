@@ -2,29 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
+public class GeneralMover : MonoBehaviour
 {
+    private enum MOvementMOde
+    {
+        velocity =0, 
+        acceleration
+    }
+
+
+    private MyVector Displacement;
+    public MyVector velocity;
+    public float speed;
+    [SerializeField] private MOvementMOde movemenMode;
+    [SerializeField] private Transform Target; 
     [SerializeField] private MyVector position;
     [SerializeField] private MyVector aceleracion;
-    private MyVector Displacement;
-     public MyVector velocity;
-    [SerializeField] private int state = 0;
-    [SerializeField] private Transform Target;
     // Start is called before the first frame update
     void Start()
     {
         position = transform.position;
 
     }
-
+   
     // Update is called once per frame
     void Update()
     {
         aceleracion.Draw(position, Color.green);
         position.Draw(Color.blue);
-        Move();
+        aceleracion *= 0;
         velocity.Draw(position, Color.red);
-
+        switch (movemenMode)
+        {
+            case MOvementMOde.velocity:
+                velocity = Target.position - transform.position;
+                velocity.Normalize();
+                velocity *= speed;
+                break;
+            case MOvementMOde.acceleration:
+                aceleracion = Target.position - transform.position;
+                break;
+        }
+        Move();
     }
     public void Move()
     {
@@ -33,22 +52,6 @@ public class Mover : MonoBehaviour
         velocity = velocity + aceleracion * Time.deltaTime;
         position = position + Displacement;
 
-        /*
-         if (position.x < -5 || position.x > 5)
-         {
-             position.x = Mathf.Sign(position.x) * 5;
-             velocity.x *= -1;
-         }
-         if (position.y < -5 || position.y > 5)
-         {
-             position.y = Mathf.Sign(position.y) * 5;
-             velocity.y *= -1;
-         }
-        */
         transform.position = position;
-        
-        aceleracion = Target.position - transform.position;
-       
-
     }
   }
